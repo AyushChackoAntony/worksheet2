@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple HTML Form</title>
+    <script>
+        function displayWelcomeMessage(event) {
+            event.preventDefault(); // Prevent form submission
+            const name = document.getElementById("name").value; // Get the name input
+            const messageContainer = document.getElementById("messageContainer");
+            messageContainer.innerHTML = `<h1>Welcome, ${name}!</h1>`;
+            document.getElementById("formContainer").style.display = "none"; // Hide the form
+        }
+    </script>
 </head>
 <body>
-    <h1>Contact Us</h1>
-    <form action="submit_form.php" method="post">
-        <!-- Name Input -->
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
-
-        <!-- Email Input -->
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
-
-        <!-- Message Input -->
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="5" placeholder="Write your message here"></textarea><br><br>
-
-        <!-- Submit Button -->
-        <button type="submit">Submit</button>
-    </form>
+    <div id="formContainer">
+        <h1>Contact Us</h1>
+        <form onsubmit="displayWelcomeMessage(event)">
+            <!-- Name Input -->
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div id="messageContainer"></div>
 </body>
 </html>
